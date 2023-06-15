@@ -5,7 +5,9 @@ export class GetAllUsersService {
     async execute(): Promise<User[] | Error> {
         const repo = db.getRepository(User)
 
-        const categories = await repo.find();
+        const categories = await repo.find({
+            relations: ["cidade", "nivelAcessoObj"]
+        });
 
         return categories;
     }

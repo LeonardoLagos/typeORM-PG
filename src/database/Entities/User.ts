@@ -1,6 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
+import { Cidades } from "./Cidades"
+import { NivelAcesso } from "./NivelAcesso"
 
-@Entity("usuarios")
+@Entity("user")
 export class User {
     @PrimaryGeneratedColumn()
     id: number
@@ -12,10 +14,18 @@ export class User {
     senha: string
 
     @Column()
-    cidade: string
+    cod_cidade: number
+
+    @ManyToOne(() => Cidades)
+    @JoinColumn({name: "cod_cidade"})
+    cidade: Cidades
 
     @Column()
     nivel_acesso: number
+
+    @ManyToOne(() => NivelAcesso)
+    @JoinColumn({name: "nivel_acesso"})
+    nivelAcessoObj: NivelAcesso
 
     @Column()
     status: number
