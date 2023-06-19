@@ -11,6 +11,6 @@ export class ValidateUserController{
             return response.status(401).json(result.message)
         }
 
-        return response.status(200).json(result)
+        return response.status(200).json({ auth: true, token: result })
     }
 }
