@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "t
 import { Cidades } from "./Cidades"
 import { NivelAcesso } from "./NivelAcesso"
 
-@Entity("user")
+@Entity("usuarios")
 export class User {
     @PrimaryGeneratedColumn()
     id: number
