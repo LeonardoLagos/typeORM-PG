@@ -13,8 +13,8 @@
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "yarn typeorm migration:run -d ./src/Database/dataSources/dataSource.ts",
-    "test": "jest"
+    "migration:run": "yarn typeorm migration:run",
+    "test": "jest --detectOpenHandles"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",

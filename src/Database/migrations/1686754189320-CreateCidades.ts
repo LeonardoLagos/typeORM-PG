@@ -22,6 +22,10 @@ export class CreateCidades1686754189320 implements MigrationInterface {
                 }
             ]
         }))
+
+        await queryRunner.query(
+            `insert into cidades(descricao, UF) values ('CUIABA', 'MT')`,
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

@@ -51,10 +51,21 @@ export class User1686762903879 implements MigrationInterface {
                 ]
             })
         )
+
+        queryRunner.query(
+            `insert into usuarios(login, senha, cod_cidade, nivel_acesso, status) values ('ADMTeste', 'a', 1,1,1)`,
+        )
+
+        queryRunner.query(
+            `insert into usuarios(login, senha, cod_cidade, nivel_acesso, status) values ('UsuariosTeste1', 'a', 1,2,1)`,
+        )
+
+        queryRunner.query(
+            `insert into usuarios(login, senha, cod_cidade, nivel_acesso, status) values ('UsuariosTeste2', 'a', 1,2,1)`,
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("user")
+        await queryRunner.dropTable("usuarios")
     }
-
 }

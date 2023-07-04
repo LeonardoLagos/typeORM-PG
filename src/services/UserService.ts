@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import {PostgresDataSource as db} from "../Database/dataSources/dataSource"
+import {dataSource as db} from "../Database/dataSources/dataSource"
 import {User} from "../Database/entities/User"
 import jwt from 'jsonwebtoken'
 
@@ -24,30 +24,28 @@ export class UserService {
     }
 
     createUser = async ({login, senha, cod_cidade, nivel_acesso}: UsuarioRequest): Promise<User | Error> => {
-        if((await this.repo.findOne({where: { login: login, cod_cidade: Number.parseInt(cod_cidade)}}))){
+        const itemDb = await this.repo.findOne({where: { login: login, cod_cidade: Number.parseInt(cod_cidade)}})
+        if((itemDb)){
             return new Error("Login já existente!")
         }
-        
-        const category = this.repo.create({
+        let usuario = await this.repo.save({
             login: login,
             senha: senha,
             cod_cidade: Number.parseInt(cod_cidade),
             nivel_acesso: nivel_acesso,
             status: 1
         })
-
-        await this.repo.save(category)
-
-        return category
+        return usuario
     }
 
-    deleteUser = async (id: string): Promise<User | Error> => {        
+    deleteUser = async (id: string): Promise< User | Error> => {        
         const itemDb = await this.repo.findOne({where: {id: Number.parseInt(id)}})
         if(!itemDb){
             return new Error("Usuário inexistente!")
         }
 
-        this.repo.delete(itemDb)
+        await this.repo.delete(itemDb)
+        
         return itemDb;
     }
 

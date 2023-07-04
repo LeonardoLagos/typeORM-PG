@@ -19,7 +19,7 @@ export class UserController {
             return response.status(400).json(result.message)
         }
 
-        return response.status(201).json(result);
+        return response.status(201).json({ message: "Usuario criado"});
     }
 
     deleteUser = async (request:Request, response:Response): Promise<Response> => {
@@ -30,7 +30,7 @@ export class UserController {
             return response.status(400).json(result.message)
         }
 
-        return response.status(204).json(result);
+        return response.status(204).json({ message:"Usuario deleteado" });
     }
 
     getAllUsers = async (request: Request, response: Response): Promise<Response> => {
@@ -52,7 +52,7 @@ export class UserController {
             return response.status(400).json(result.message)
         }
 
-        return response.status(200).json(result);
+        return response.status(200).json({ message:"Usuário atualizado" });
     }
 
     validateUser = async (request:Request, response:Response): Promise<Response> => {

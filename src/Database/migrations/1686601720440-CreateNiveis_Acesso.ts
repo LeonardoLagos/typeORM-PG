@@ -18,6 +18,14 @@ export class CreateNiveisAcesso1686601720440 implements MigrationInterface {
                 }
             ]
         }))
+
+        await queryRunner.query(
+            `insert into niveis_acesso(descricao) values ('ADM')`,
+        )
+
+        await queryRunner.query(
+            `insert into niveis_acesso(descricao) values ('USUARIO')`,
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
